@@ -42,7 +42,7 @@ router.post('/get-details', cors(), async (req, res) => {
   let data = JSON.parse(req.body.mainData)
   console.log(data)
   var token = await jwt.sign(data, salt)
-  var sd = { url: 'https://giovannid-pay.herokuapp.com/contact-details/' + token }
+  var sd = { url: 'https://oldaa.herokuapp.com/contact-details/' + token }
   res.json(sd)
 })
 
@@ -262,7 +262,7 @@ router.post("/checkout", cors(), async (req, res) => {
     newData.name = element.title //+ ` Type = ${element.type}`,
     newData.quantity = element.quantity.toString()
     newData.basePriceMoney.amount = mmamount
-    newData.basePriceMoney.currency = 'GBP'
+    newData.basePriceMoney.currency = 'USD'
     newArray.push(newData)
     newData = {}
     line_items.push(item)
@@ -300,7 +300,7 @@ router.post("/checkout", cors(), async (req, res) => {
                 type: 'FIXED_AMOUNT',
                 amountMoney: {
                   amount: 0,
-                  currency: 'GBP'
+                  currency: 'USD'
                 },
                 scope: 'LINE_ITEM',
                 name: "mine"
