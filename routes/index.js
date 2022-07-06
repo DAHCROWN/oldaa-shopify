@@ -25,9 +25,9 @@ var shipping_rates = [
 
 
 const shopify = new Shopify({
-  shopName: 'selfkeyuk',
+  shopName: 'oldaa',
   // apiKey: '846d4dae55ec9ee7c389e3c0066bc936',
-  accessToken: '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'
+  accessToken: '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'
 });
 
 shopify.on('callLimits', (limits) => console.log(limits));
