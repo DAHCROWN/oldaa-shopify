@@ -262,7 +262,7 @@ router.post("/checkout", cors(), async (req, res) => {
     newData.name = element.title //+ ` Type = ${element.type}`,
     newData.quantity = element.quantity.toString()
     newData.basePriceMoney.amount = mmamount
-    newData.basePriceMoney.currency = 'USD'
+    newData.basePriceMoney.currency = 'EUR'
     newArray.push(newData)
     newData = {}
     line_items.push(item)
@@ -300,7 +300,7 @@ router.post("/checkout", cors(), async (req, res) => {
                 type: 'FIXED_AMOUNT',
                 amountMoney: {
                   amount: 0,
-                  currency: 'USD'
+                  currency: 'EUR'
                 },
                 scope: 'LINE_ITEM',
                 name: "mine"
