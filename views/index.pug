@@ -1,0 +1,122 @@
+extends layout
+block content
+  - let productionUrl = "https://web.squarecdn.com/v1/square.js";
+  - let sandBoxUrl = "https://sandbox.web.squarecdn.com/v1/square.js";
+  - let paymentFormSrc = process.env.NODE_ENV === "sandbox" ? sandBoxUrl : productionUrl;
+  script(type="text/javascript" src=paymentFormSrc)
+  script(type="text/javascript").
+    window.applicationId="#{squareApplicationId}";
+    window.locationId="#{squareLocationId}";
+    window.currency="#{squareAccountCurrency}";
+    window.country="#{squareAccountCountry}";
+    window.orderToken="#{token}";
+    window.total="#{total}";
+
+  
+  div(style='height:100vh').row.g-5
+        
+    .col-md-5.col-lg-5.order-md-last.bg-light.h-100
+      .px-5.pt-3            
+        h4.d-flex.justify-content-between.align-items-center.mb-3
+          //- span.text-primary Your cart
+          //- span.badge.bg-primary.rounded-pill #{items.length}
+        ul.list-group.mb-3
+          each item in items
+            li.list-group-item.d-flex.justify-content-between.lh-sm
+              div
+                h6.my-0 #{item.title}     x#{item.quantity} 
+                  
+                small.text-muted Brief description
+              span.text-muted.mx-2  $#{item.price/100}
+          hr
+          li.list-group-item.d-flex.justify-content-between.bg-light.shipping.d-none
+            //- .text-success
+            h6.my-0 Shipping 
+              //- small EXAMPLECODE
+            span   $#{shipping_rate}
+          //- li.list-group-item.d-flex.justify-content-between.bg-light
+          //-   .text-success
+          //-     h6.my-0 Promo code
+          //-     small NO CODE
+          //-   span.text-success &minus;$0
+          form.p-2
+          .input-group
+            input.form-control( style="height: fit-content;" type='text', placeholder='Promo code')
+            button.btn.btn-secondary.h-100(type='submit') Redeem
+          li.list-group-item.d-flex.justify-content-between.shipping
+            span Subtotal
+            strong $#{parseFloat((total1).toFixed(8))}
+          //- li.list-group-item.d-flex.justify-content-between.pick-up
+          //-   span Shipping
+          //-   div.text-seconday calculated at next step  
+          hr
+          li.list-group-item.d-flex.justify-content-between.shipping
+            span Total
+            strong $#{parseFloat((total1).toFixed(8))}
+        
+    .col-md-7.col-lg-7.h-100
+      .px-5.pt-4.top-p     
+        .py-0.text-center
+          h2 Giovannni DESIGN
+
+        div(class="bg-light toggle-summary py-3 row " )
+          .col-10 show summary 
+          .col-2 $85
+
+        p.text-center Cart > Information > Shipping > Payment
+                  
+      .row.g-3
+        .col-12
+          div(class="d-flex h-100") 
+            div(class="text-center m-auto border w-75")
+
+              form(class="payment-form " id="fast-checkout")
+                div(class="wrapper d-none pay-block"  data-blockType="wallet")
+                  div(id="apple-pay-button" alt="apple-pay" type="button")
+                  div(id="google-pay-button" alt="google-pay" type="button")
+                  
+
+                div(class="d-none pay-block" data-blockType="bank-transfer")
+                  div(id="ach-wrapper")
+                  label(for="ach-account-holder-name").
+                    Full Name
+                  input(id="ach-account-holder-name" type="text" placeholder="Jane Doe" name="ach-account-holder-name" autocomplete="name")
+                  span(id="ach-message")
+                  button.mt-3(id="ach-button" type="button").
+                    Pay with Bank Account
+                  
+
+                div(class="d-none pay-block"  data-blockType="card-payment")
+                  div(id="card-container")
+                  button(id="card-button" type="button").
+                    Pay with Card
+                  
+                div(class="d-none pay-block" data-blockType="gift-cart")
+                  div(id="gift-card-container" )
+                  button(id="gift-card-button" type='button').
+                    Pay with Gift Card
+                div(class="pay-block" data-blockType="blank")
+                  div(class="text-center")
+                    |Seclect payment option
+                
+                div(class="btn btn-primary pay-btn w-100 m-0" data-btnType="wallet")
+                  |Digital Wallet
+                div(class="btn btn-primary pay-btn w-100 m-0" data-btnType="bank-transfer")
+                  |Bank Transfer
+                div(class="btn btn-primary pay-btn w-100 m-0" data-btnType="card-payment")
+                  |Card Payment
+                  
+                span(id="payment-flow-message")
+                //- button(class="btn btn-primary pay-btn w-100 m-0" data-btnType="gift-cart")
+                //-   |Gift Card
+    
+
+  script(type="text/javascript" src="/js/sq-ach.js")
+  script(type="text/javascript" src="/js/sq-apple-pay.js")
+  script(type="text/javascript" src="/js/sq-google-pay.js")
+  script(type="text/javascript" src="/js/sq-card-pay.js")
+  script(type="text/javascript" src="/js/sq-giftCard-pay.js")
+
+
+
+

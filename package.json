@@ -1,0 +1,27 @@
+{
+  "name": "node-payment",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "NODE_ENV=sandbox node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "cors": "^2.8.5",
+    "debug": "*",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "*",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "*",
+    "pug": "^3.0.2",
+    "serve-favicon": "*",
+    "shopify-api-node": "^3.9.0",
+    "square": "^19.0.0",
+    "uuid": "^8.3.2"
+  }
+}
+

@@ -1,0 +1,270 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='Mark Otto, Jacob Thornton, and Bootstrap contributors')
+    meta(name='generator', content='Hugo 0.87.0')
+    title Yoga Smokes - Checkout
+    link(rel='canonical', href='https://getbootstrap.com/docs/5.1/examples/checkout/')
+    // Bootstrap core CSS
+    <link rel="icon" type="image/png" href="/Yoga_Smokes.webp">
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    style.
+      .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      }
+      @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+      }
+      }
+    // Custom styles for this template
+    link(href='/stylesheets/form-validation.css', rel='stylesheet')
+  body
+    .container-fluid.bg-dark-yoga
+         
+    
+      main
+        //- p.lead
+        //-   | Below is an example form built entirely with Bootstrap&rsquo;s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.
+        .row.g-5
+         
+          .col-md-5.col-lg-5.order-md-last.bg-light
+            .px-5.pt-3            
+              h4.d-flex.justify-content-between.align-items-center.mb-3
+                //- span.text-primary Your cart
+                //- span.badge.bg-primary.rounded-pill #{items.length}
+              ul.list-group.mb-3
+                each item in items
+                  li.list-group-item.d-flex.justify-content-between.lh-sm
+                    div
+                      h6.my-0 #{item.title}     x#{item.quantity} 
+                        
+                      small.text-muted Brief description
+                    span.text-muted.mx-2  $#{item.price/100}
+                hr
+                li.list-group-item.d-flex.justify-content-between.bg-light.shipping.d-none
+                  //- .text-success
+                  h6.my-0 Shipping 
+                    //- small EXAMPLECODE
+                  span   $#{shipping_rate}
+                //- li.list-group-item.d-flex.justify-content-between.bg-light
+                //-   .text-success
+                //-     h6.my-0 Promo code
+                //-     small NO CODE
+                //-   span.text-success &minus;$0
+                form.p-2
+                .input-group
+                  input.form-control( style="height: fit-content;" type='text', placeholder='Promo code')
+                  button.btn.btn-secondary.h-100(type='submit') Redeem
+                li.list-group-item.d-flex.justify-content-between.shipping
+                  span Subtotal
+                  strong $#{parseFloat((total).toFixed(8))}
+                //- li.list-group-item.d-flex.justify-content-between.pick-up
+                //-   span Shipping
+                //-   div.text-seconday calculated at next step  
+                hr
+                li.list-group-item.d-flex.justify-content-between.shipping
+                  span Total
+                  strong $#{parseFloat((total).toFixed(8))}
+              
+          .col-md-7.col-lg-7
+            .px-5.pt-4     
+              .py-0.text-center
+                h2 Giovannni DESIGN
+                p Cart > Information > Shipping > Payment
+              form.needs-validation( novalidate method="post")
+                
+                .row.g-3
+                  .col-12
+                    label.form-label(for='email')
+                      | Email 
+                      span.text-muted
+                    input#email.form-control(type='email' , name="email", placeholder='you@example.com' required='')
+                    .invalid-feedback
+                      | Please enter a valid email address for updates.
+                    h4.my-2.fw-bold Shipping  Address
+                  //- .col-12
+                  //-   label.form-label(for='email')
+                  //-     | Delivery Method
+                  //-   .border.p-2
+                  //-     input.delivery-method.form-check-input(type='radio' , name="delivery_method", value='pick up' required='' checked)
+                  //-     |Pick Up
+                  //-     .invalid-feedback
+                  //-       | Please select a delivery method.
+                  //-     br
+                  //-     input.delivery-method.form-check-input(type='radio' , name="delivery_method", value='shipping' required='' )
+                  //-     |Shipping
+                  //-     .invalid-feedback
+                  //-       | Please select a delivery method.
+                  .col-sm-6
+                    label.form-label(for='firstName') First Name
+                    input#firstName.form-control(type='text', name="firstname", placeholder='', value='', required=true)
+                    .invalid-feedback
+                      | Valid first name is required.
+                  .col-sm-6
+                    label.form-label(for='lastName') Last Name
+                    input#lastName.form-control(type='text', name="lastname", placeholder='', required)
+                    .invalid-feedback
+                      | Valid last name is required.
+                  .col-12
+                    label.form-label(for='username') Phone
+                    .input-group.has-validation
+                      
+                      input#username.form-control(type='number', name="phone", placeholder='Phone number', required='')
+                      .invalid-feedback
+                        | Your phone number is required.
+                  //- .col-12
+                  //-   label.form-label(for='address') Company (if applicable)
+                  //-   input#company.form-control(type='text', name="company", placeholder='company' )
+                  //-   .invalid-feedback
+                  //-     | Please enter your company.
+                  .col-12
+                    label.form-label(for='address') Address1
+                    input#address1.form-control(type='text', name="address1", placeholder='1234 Main St', required='')
+                    .invalid-feedback
+                      | Please enter your  address.
+                  .col-12
+                    label.form-label(for='address2') Address2
+                    input#address2.form-control(type='text', name="address2", placeholder='1234 Main St')
+                    .invalid-feedback
+                      | Please enter your shipping address.
+                  //- .col-12
+                  //-   label.form-label(for='address2')
+                  //-     | Address 2 
+                  //-     span.text-muted (Optional)
+                  //-   input#address2.form-control(type='text', name="address2", placeholder='Apartment or suite')
+                  //- .col-12
+                  //-   label.form-label(for='country') Country
+                  //-   input#address.form-control(type='text', name="country", placeholder='', required='')
+                  //-   .invalid-feedback
+                  //-     | Please enter your country
+                  //- .col-md-5
+                  //-   label.form-label(for='state') State
+                  //-   input#address.form-control(type='text', name="state", placeholder='', required='')
+                  //-   .invalid-feedback
+                  //-     | Please enter your state
+                 
+                  .col-12
+                    label.form-label(for='country') Country
+                    select#country.form-select( name="country", required='')
+                      option(value='') Choose...
+                      option(value='GB', class='country') United Kingdom
+                      option(value='FR',class='country') France
+                    .invalid-feedback
+                      | Please select a valid country.
+
+                  .col-md-6
+                    label.form-label(for='state') City
+                    select#state.form-select(name="city",required='')
+                      option(value='') ---
+                    .invalid-feedback
+                      | Please provide a valid city.
+                  //- .col-md-4
+                  //-   label.form-label(for='city') City
+                  //-   input#address.form-control(type='text', name="city", placeholder='', required='')
+                  //-   .invalid-feedback
+                  //-     | Please enter your city
+                        
+                  .col-md-6
+                    label.form-label(for='zip') PostalCode
+                    input#zip.form-control(style="height:fit-content" type='text', name="zip" placeholder='', required='')
+                    .invalid-feedback
+                      | Postal code required.
+                hr.my-4
+                .form-check
+                  input#same-address.form-check-input(type='checkbox')
+                  label.form-check-label(for='same-address') Shipping address is the same as my billing address
+                .form-check
+                  input#save-info.form-check-input(type='checkbox')
+                  label.form-check-label(for='save-info') Save this information for next time
+                hr.my-4
+          
+                style.
+                  .btn-primary{
+                  background-color:black;
+                  }
+                button.w-50.btn.btn-primary.btn-lg(type='submit') Continue to Shipping
+                a(href="").w-50.btn.btn-lg Return to cart
+      //- footer.my-5.pt-5.text-muted.text-center.text-small
+      //-   p.mb-1 &copy; 2022 Yoga Smokes
+      //-   ul.list-inline
+      //-     li.list-inline-item
+      //-       a(href='#') Privacy
+      //-     li.list-inline-item
+      //-       a(href='#') Terms
+      //-     li.list-inline-item
+      //-       a(href='#') Support
+    script(src='/js/bootstrap.bundle.min.js')
+    script(src='/js/form-validation.js')
+
+    script.            
+      var deliveryBtns = document.querySelectorAll('.delivery-method')
+      if (deliveryBtns) {
+        console.log("adasdasdasdas")
+        var pickUp = document.querySelector('.pick-up'),
+            shipping = document.querySelectorAll('.shipping');
+        
+        deliveryBtns.forEach(element => {
+          console.log(element.value)
+          element.addEventListener('click',function() {
+            console.log(element.value)
+            if (element.value=="pick up") {
+              shipping.forEach(ship=>{
+                ship.classList.add('d-none')
+              })
+              pickUp.classList.remove('d-none')
+
+            }
+            if (element.value=="shipping") {
+                shipping.forEach(ship=>{
+                ship.classList.remove('d-none')
+              })
+              pickUp.classList.add('d-none')
+            
+            }
+
+          })
+        });
+      }
+
+      var headers = new Headers();
+      headers.append("X-CSCAPI-KEY", "b2RJcm9rdTl5aUpmTU1VZkV1ZjB3NTdBZ3RQcEJMM3VTQ3ZEWElneQ==");
+      
+      var requestOptions = {
+      method: 'GET',
+      headers: headers,
+      redirect: 'follow'
+      };
+
+   
+      var country =  document.querySelector('#country')
+     
+        country.addEventListener('change',function(){
+          
+          fetch(`https://api.countrystatecity.in/v1/countries/${country.value}/states`, requestOptions)
+              .then(response => response.text())
+              .then(result => allState(JSON.parse(result)))
+              .catch(error => console.log('error', error));
+        })
+    
+      function allState(states) {
+      let stateOptions = ''
+      states.forEach(state => {
+        
+        let option = `<option value='${state.name}'>${state.name}</option>`
+        stateOptions+= option   
+      });
+      document.getElementById('state').innerHTML=stateOptions
+      }
+      
+
+          
