@@ -70,7 +70,7 @@ function change(e) {
   console.log(Data)
   let mainData = JSON.stringify(Data)
   // document.querySelector('.my-checkout').style.display="block"
-  $.post("https://selfkeyuk.herokuapp.com/checkout",
+  $.post("https://oldaa.herokuapp.com/checkout",
     { mainData }
     ,
     function (data, status) {
