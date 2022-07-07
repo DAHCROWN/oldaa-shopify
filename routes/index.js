@@ -366,7 +366,7 @@ router.get('/verify/:token', async (req, res) => {
       //   });
       var customer_id = await transactionsApi.retrieveTransaction(process.env.SQUARE_LOCATION_ID, txn_id)
       console.log(customer_id)
-      var customer_idx = customer_id.result.transaction.tenders[0].customer_id
+      var customer_idx = customer_id.result.transaction.tenders[0].customer_Id
       console.log("this is customer", customer_idx)
       const response = await customersApi.retrieveCustomer(customer_idx);
       var data = response.result.customer
@@ -376,7 +376,7 @@ router.get('/verify/:token', async (req, res) => {
         address1: data.address.addressLine1,
         phone: '00000000000',
         city: data.address.locality,
-        province: data.address.addressLine1,
+        province: data.address.state,
         country: data.address.country,
         zip: data.address.postalCode,
 
