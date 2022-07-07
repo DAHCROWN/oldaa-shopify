@@ -419,8 +419,6 @@ router.get('/verify/:token', async (req, res) => {
 
     }, 10000);
 
-
-
   } catch (error) {
     console.error(error);
   }
