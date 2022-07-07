@@ -364,9 +364,11 @@ router.get('/verify/:token', async (req, res) => {
       //       "accept-encoding": "gzip,deflate,br"
       //     },
       //   });
-      var customer_id = await transactionsApi.retrieveTransaction(process.env.SQUARE_LOCATION_ID, txn_id)
+
+      var customer_id = await transactionsApi.retrieveTransaction(process.env.SQUARE_LOCATION_ID,txn_id)
+      
       console.log(customer_id)
-      var customer_idx = customer_id.result.transaction.tenders[0].customer_Id
+      var customer_idx = customer_id.result.transaction.tenders[0].customerId
       console.log("this is customer", customer_idx)
       const response = await customersApi.retrieveCustomer(customer_idx);
       var data = response.result.customer
@@ -410,8 +412,7 @@ router.get('/verify/:token', async (req, res) => {
             email: data.emailAddress
           })
         .then((order) =>
-          res.redirect('https://oldaa.myshopify.com/pages/acknowledgement')
-          
+        res.redirect('https://oldaa.myshopify.com/pages/acknowledgement')
         )
         .catch((err) =>
           console.log(err)
@@ -419,6 +420,9 @@ router.get('/verify/:token', async (req, res) => {
         )
 
     }, 10000);
+
+
+
 
   } catch (error) {
     console.error(error);
