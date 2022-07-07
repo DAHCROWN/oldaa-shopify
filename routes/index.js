@@ -323,7 +323,7 @@ router.post("/checkout", cors(), async (req, res) => {
         //   firstName: 'Jane',
         //   lastName: 'Doe'
         // },
-        redirectUrl: `https://selfkeyuk.herokuapp.com/verify/${verifyToken}`,
+        redirectUrl: `https://oldaa.herokuapp.com/verify/${verifyToken}`,
         // additionalRecipients: [
         //   {
         //     locationId: '057P5VYJ4A5X1',
