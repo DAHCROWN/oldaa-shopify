@@ -356,15 +356,16 @@ router.get('/verify/:token', async (req, res) => {
 
   try {
     setTimeout(async () => {
-      const customer_id = await axios.get(`https://connect.squareup.com/v2/locations/${process.env.SQUARE_LOCATION_ID}/transactions/${txn_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
-            accept: "*/*",
-            "accept-encoding": "gzip,deflate,br"
-          },
-        });
-      console.log(customer_id.data)
+      // const customer_id = await axios.get(`https://connect.squareup.com/v2/locations/${process.env.SQUARE_LOCATION_ID}/transactions/${txn_id}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+      //       accept: "*/*",
+      //       "accept-encoding": "gzip,deflate,br"
+      //     },
+      //   });
+      var customer_id = await transactionsApi.retrieveTransaction(process.env.SQUARE_LOCATION_ID, txn_id)
+      console.log(customer_id)
       var customer_idx = customer_id.data.transaction.tenders[0].customer_id
       console.log("this is customer", customer_idx)
       const response = await customersApi.retrieveCustomer(customer_idx);
@@ -380,7 +381,7 @@ router.get('/verify/:token', async (req, res) => {
         zip: data.address.postalCode,
 
       }
-      console.log(decoded.line_items)
+      // console.log(decoded.line_items)
       var dodo = {
       line_items: decoded.line_items.line_items,
             customer: {
